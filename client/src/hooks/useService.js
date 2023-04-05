@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
-export function useService(serviceFactory) {
+export const useService = (serviceFactory) => {
     const { token } = useContext(AuthContext)
 
     const service = serviceFactory(token);

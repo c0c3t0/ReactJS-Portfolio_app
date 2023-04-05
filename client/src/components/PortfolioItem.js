@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-export default function PortfolioItem({ _id, img }) {
+export const PortfolioItem = ({
+    _id,
+    img,
+}) => {
     return (
         <div className="card card-hover h-100" >
             <div className="card-body">
@@ -14,7 +17,5 @@ export default function PortfolioItem({ _id, img }) {
                 </Link>
             </div>
         </div>
-    )
-}
-
-
+    );
+};

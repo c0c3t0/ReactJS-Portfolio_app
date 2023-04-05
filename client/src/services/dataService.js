@@ -2,7 +2,7 @@ import { requestFactory } from './requester';
 
 const baseUrl = 'http://localhost:3030/data/photos';
 
-export function dataServiceFactory(token) {
+export const photosServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAllPhotos = async () => {
@@ -12,53 +12,27 @@ export function dataServiceFactory(token) {
         return photos;
     };
 
-    const getPhotoById = async (id) => {
-        const result = await request.get(`${baseUrl}/${id}`);
+    const getPhotoById = async (photoId) => {
+        const photo = await request.get(`${baseUrl}/${photoId}`);
 
+        return photo;
+    };
+
+    const uploadPhoto = async (photoData) => {
+        const result = await request.post(baseUrl, photoData);
         return result;
     };
 
-    const uploadPhoto = async (data) => {
-        const result = await request.post(baseUrl, data);
+    const editPhoto = (photoId, data) => request.put(`${baseUrl}/${photoId}`, data);
 
-        console.log(result);
-
-        return result;
-    };
-
-    const editPhoto = (id, data) => request.put(`${baseUrl}/${id}`, data);
-
-    const deletePhoto = (id) => request.delete(`${baseUrl}/${id}`);
-
-    const addComment = async (id, data) => {
-        const result = await request.post(`${baseUrl}/${id}/comments`, data);
-
-        return result;
-    };
+    const deletePhoto = (photoId) => request.delete(`${baseUrl}/${photoId}`);
 
 
     return {
-        getAllPhotos: getAllPhotos,
-        getPhotoById: getPhotoById,
-        uploadPhoto: uploadPhoto,
-        editPhoto: editPhoto,
-        deletePhoto: deletePhoto,
-        addComment,
+        getAllPhotos,
+        getPhotoById,
+        uploadPhoto,
+        editPhoto,
+        deletePhoto,
     };
 }
-
-// const baseUrl = 'http://localhost:3030/data/photos';
-
-// export async function getAll() {
-//     const response = await fetch(baseUrl);
-//     const data = await response.json();
-//     console.log(data);
-//     return data;
-// };
-
-// export async function getById(id) {
-//     const response = await fetch(`${baseUrl}/${id}`);
-//     const data = await response.json();
-
-//     return data;
-// };

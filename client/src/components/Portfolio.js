@@ -1,6 +1,10 @@
-import PortfolioItem from './PortfolioItem.js'
+import { useDataContext } from "../contexts/DataContext";
 
-export default function Portfolio({ photos }) {
+import { PortfolioItem } from "./PortfolioItem";
+
+export const Portfolio = () => {
+    const { photos } = useDataContext();
+
     return (
         <div className="portfolio-text">
             <div className="container-fluid pt-10">

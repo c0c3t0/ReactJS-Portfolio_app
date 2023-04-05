@@ -2,7 +2,7 @@ import { requestFactory } from './requester';
 
 const baseUrl = `http://localhost:3030/users`;
 
-export function authServiceFactory(token) {
+export const authServiceFactory = (token) => {
     const request = requestFactory(token);
 
     return {
