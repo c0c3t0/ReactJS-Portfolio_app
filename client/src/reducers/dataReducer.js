@@ -15,15 +15,7 @@ export const dataReducer = (state, action) => {
                         }
                     }
                 ],
-            };
-        case 'COMMENT_DELETE':
-            return {
-                ...state,
-                comments: [
-                    ...state.comments
-                ],
-            };
-
+            }
         default:
             return state;
     }

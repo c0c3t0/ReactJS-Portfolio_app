@@ -16,12 +16,9 @@ export const Navigation = () => {
                         <nav className="overlay-menu">
                             <ul>
                                 <li> <Link to="/">Portfolio</Link></li>
-                                <li> <Link to="/about">About</Link></li>
-                                <li> <Link to="/blog">Blog</Link></li>
-                                <li> <Link to="/contacts">Contacts</Link></li>
-                                <li> <Link to="/offers">uslugi</Link></li>
                                 {isAuthenticated && (<>
                                     <li> <Link to="/upload">Upload Photo</Link></li>
+                                    <li> <Link to="/my-photos">My Photos</Link></li>
                                     <li> <Link to="/logout"> Logout</Link></li></>
                                 )}
                                 {!isAuthenticated && (

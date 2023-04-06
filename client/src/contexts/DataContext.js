@@ -15,7 +15,7 @@ export const DataProvider = ({ children }) => {
             .then(result => {
                 setPhotos(result)
             })
-    }, [dataService]);
+    }, []);
 
     const onUploadPhotoSubmit = async (data) => {
         const newPhoto = await dataService.uploadPhoto(data);
@@ -37,11 +37,9 @@ export const DataProvider = ({ children }) => {
         return photos.find(photo => photo._id === photoId);
     };
 
-    const deletePhotoComment = (commentId) => {
-        console.log(photos);
-        // setPhotos(state => state.filter(photo => photo._id !== photoId));
+    const getOwnerPhotos = (userId) => {
+        return photos.filter(photo => photo._ownerId === userId);
     };
-
 
     const contextValues = {
         photos,
@@ -49,7 +47,7 @@ export const DataProvider = ({ children }) => {
         onPhotoEditSubmit,
         deletePhoto,
         getPhoto,
-        deletePhotoComment
+        getOwnerPhotos
     };
 
     return (

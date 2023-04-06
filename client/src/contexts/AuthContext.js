@@ -6,27 +6,36 @@ import { authServiceFactory } from '../services/authService';
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({
+    children,
+}) => {
     const [auth, setAuth] = useLocalStorage('auth', {});
     const navigate = useNavigate();
 
     const authService = authServiceFactory(auth.accessToken)
 
     const onLoginSubmit = async (data) => {
-        const result = await authService.login(data);
-        setAuth(result);
-        navigate('/');
+        try {
+            const result = await authService.login(data);
+
+            setAuth(result);
+
+            navigate('/');
+        } catch (error) {
+            console.log('There is a problem');
+        }
     };
 
     const onRegisterSubmit = async (data) => {
         if (!data.email || !data.password || !data.rePass) {
             alert('All fields are required!');
             return;
-        };
+        }
         if (data.password !== data.rePass) {
             alert('Passwords don\'t match!');
             return;
-        };
+        }
+
 
         const result = await authService.register(data);
         setAuth(result);
@@ -35,6 +44,7 @@ export const AuthProvider = ({ children }) => {
 
     const onLogout = async () => {
         await authService.logout();
+
         setAuth({});
     };
 

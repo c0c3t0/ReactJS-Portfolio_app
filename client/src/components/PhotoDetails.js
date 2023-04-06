@@ -2,58 +2,35 @@ import { useEffect, useReducer } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { photosServiceFactory } from '../services/dataService';
-import { commentsServiceFactory } from '../services/commenstService';
+import * as commentService from '../services/commentService';
 import { useService } from '../hooks/useService';
 import { useAuthContext } from '../contexts/AuthContext';
 
-import { AddComment } from './AddComment';
+import { CommentForm } from './CommentForm';
 import { dataReducer } from '../reducers/dataReducer';
 import { useDataContext } from '../contexts/DataContext';
-
 
 export const PhotoDetails = () => {
     const { photoId } = useParams();
     const { userId, isAuthenticated, userEmail } = useAuthContext();
     const { deletePhoto } = useDataContext();
     const [photo, dispatch] = useReducer(dataReducer, {});
-    const photoService = useService(photosServiceFactory);
-    const commentService = useService(commentsServiceFactory);
-
+    const photoService = useService(photosServiceFactory)
     const navigate = useNavigate();
-
 
     useEffect(() => {
         Promise.all([
             photoService.getPhotoById(photoId),
-            commentService.getAllComments(photoId)
+            commentService.getAllComments(photoId),
         ]).then(([photoData, comments]) => {
             const photoState = {
                 ...photoData,
                 comments,
             };
-
-            dispatch({ type: 'PHOTOS_FETCH', payload: photoState })
+            
+            dispatch({type: 'PHOTOS_FETCH', payload: photoState})
         });
-    }, [photoId, photoService, commentService]);
-
-
-
-    // const onCommentUpdate = () => {
-
-    // }
-
-    const isOwner = photo._ownerId === userId;
-
-    const onDeleteClick = async () => {
-        // eslint-disable-next-line no-restricted-globals
-        const confirmation = confirm(`Are you sure you want to delete this photo?`);
-
-        if (confirmation) {
-            await photoService.deletePhoto(photo._id);
-            deletePhoto(photo._id);
-            navigate('/');
-        };
-    };
+    }, [photoId]);
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.addComment(photoId, values.comment);
@@ -65,29 +42,27 @@ export const PhotoDetails = () => {
         });
     };
 
+    const isOwner = photo._ownerId === userId;
 
-    const onDeleteCommentClick = async (commentId) => {
+    const onDeleteClick = async () => {
         // eslint-disable-next-line no-restricted-globals
-        const confirmation = confirm('Are you sure you want to delete this comment?');
+        const result = confirm(`Are you sure you want to delete this photo?`);
 
-        if (confirmation) {
-            await commentService.deleteComment(commentId);
+        if (result) {
+            await photoService.deletePhoto(photo._id);
 
-            navigate(`/photos/${photo._id}`);
-        };
+            deletePhoto(photo._id);
+
+            navigate('/');
+        }
     };
+
     return (
         <>
             <div className="portfolio-details">
                 <div className="img-container">
                     <img src={`../../${photo.img}`} alt="" className="card-img-top big-img" />
                 </div>
-                {isOwner && (
-                    <div className="details-buttons">
-                        <Link to={`/photos/edit/${photo._id}`} className="button yellow">Edit </Link>
-                        <button className="button red" onClick={onDeleteClick}>Delete</button>
-                    </div >
-                )}
             </div>
             <hr />
             <div className="details">
@@ -95,27 +70,14 @@ export const PhotoDetails = () => {
                 <p><b>Camera:</b> {photo.camera}</p>
                 <p><b>ISO:</b> {photo.ISO}</p>
             </div>
-
             <hr />
             <div className="feedback">
                 <div className="details-comments">
-                    <h5>Comments:</h5>
-                    {isAuthenticated
-                        ? <AddComment onCommentSubmit={onCommentSubmit} />
-                        : <p>login</p>}
-
+                    <h2>Comments:</h2>
                     <ul>
-                        {photo.comments && photo.comments.map(comment => (
-                            <li key={comment._id} className="comment">
-
-                                <h6><i>{comment.author.email} says:</i></h6>
-                                <p>{comment.comment}</p>
-                                {(comment.author._id === userId) && (
-                                    <div>
-                                        <button className="yellow">Edit</button>
-                                        <button className="button red" onClick={() => onDeleteCommentClick(comment._id)}>Delete</button>
-                                    </div>
-                                )}
+                        {photo.comments && photo.comments.map(x => (
+                            <li key={x._id} className="comment">
+                                <p>{x.author.email}: {x.comment}</p>
                             </li>
                         ))}
                     </ul>
@@ -125,6 +87,13 @@ export const PhotoDetails = () => {
                     )}
                 </div>
 
+                {isOwner && (
+                    <div className="buttons">
+                        <Link to={`/photos/edit/${photo._id}`} className="button">Edit</Link>
+                        <button className="button" onClick={onDeleteClick}>Delete</button>
+                    </div>
+                )};
+                {isAuthenticated && <CommentForm onCommentSubmit={onCommentSubmit} />}
                 <div className="rating">
                     <div className="rate">
                         <h5><b>Rating: rate (count rates)</b></h5>

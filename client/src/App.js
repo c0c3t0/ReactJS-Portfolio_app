@@ -11,6 +11,8 @@ import { PhotoEdit } from './components/PhotoEdit';
 import { Portfolio } from './components/Portfolio';
 import { PhotoUpload } from './components/PhotoUpload';
 import { Navigation } from './components/Navigation';
+import { OwnerPhotos } from './components/OwnerPhotos';
+import { RouteGuard } from './components/RouteGuard';
 
 function App() {
     return (
@@ -25,8 +27,11 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route path='/logout' element={<Logout />} />
 
-                    <Route path='/upload' element={<PhotoUpload />} />
-                    <Route path='/photos/edit/:photoId' element={<PhotoEdit />} />
+                    <Route element={<RouteGuard />}>
+                        <Route path='/upload' element={<PhotoUpload />} />
+                        <Route path='/my-photos' element={<OwnerPhotos />} />
+                        <Route path='/photos/edit/:photoId' element={<PhotoEdit />} />
+                    </Route>
                 </Routes>
             </DataProvider>
         </AuthProvider>

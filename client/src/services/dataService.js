@@ -27,6 +27,10 @@ export const photosServiceFactory = (token) => {
 
     const deletePhoto = (photoId) => request.delete(`${baseUrl}/${photoId}`);
 
+    const getUserPhotos = async (userId) => {
+        const photos = await request.get(`${baseUrl}?where=_ownerId%3D%22${userId}%22`);
+        return photos;
+    };
 
     return {
         getAllPhotos,
@@ -34,5 +38,6 @@ export const photosServiceFactory = (token) => {
         uploadPhoto,
         editPhoto,
         deletePhoto,
+        getUserPhotos
     };
 }

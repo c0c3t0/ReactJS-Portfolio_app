@@ -1,6 +1,6 @@
 import { useForm } from "../hooks/useForm";
 
-export const AddComment = ({
+export const CommentForm = ({
     onCommentSubmit,
 }) => {
     const { values, changeHandler, onSubmit } = useForm({

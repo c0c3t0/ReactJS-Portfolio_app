@@ -14,26 +14,30 @@ export const Register = () => {
 
     return (
         <section id="register-page" className="content auth portfolio-text">
-            <form id="register" method="POST" onSubmit={onSubmit}>
+            <form id="register" method="post" onSubmit={onSubmit}>
                 <div className="container">
                     <div className="brand-logo"></div>
-                    <h4>Register</h4>
+                    <h1>Register</h1>
+
                     <label htmlFor="email">Email:</label>
-                    <input type="email"
+                    <input
+                        type="email"
                         id="email"
                         name="email"
                         placeholder="maria@email.com"
                         value={values.email}
                         onChange={changeHandler}
                     />
+
                     <label htmlFor="pass">Password:</label>
                     <input
                         type="password"
                         name="password"
                         id="register-password"
-                        value={values.pasword}
+                        value={values.password}
                         onChange={changeHandler}
                     />
+
                     <label htmlFor="con-pass">Confirm Password:</label>
                     <input
                         type="password"
@@ -42,12 +46,15 @@ export const Register = () => {
                         value={values.rePass}
                         onChange={changeHandler}
                     />
+
                     <input className="btn submit" type="submit" value="Register" />
+
                     <p className="field">
                         <span>If you already have profile click <Link to="/login">here</Link></span>
                     </p>
                 </div>
             </form>
         </section>
+
     );
 };
