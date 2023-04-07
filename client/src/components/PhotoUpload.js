@@ -2,7 +2,8 @@ import { useDataContext } from '../contexts/DataContext';
 import { useForm } from '../hooks/useForm';
 
 export const PhotoUpload = () => {
-    const {onUploadPhotoSubmit} = useDataContext();
+    const { onUploadPhotoSubmit } = useDataContext();
+
     const { values, changeHandler, onSubmit } = useForm({
         category: '',
         img: '',
@@ -11,25 +12,55 @@ export const PhotoUpload = () => {
     }, onUploadPhotoSubmit);
 
     return (
-        <section id="create-page" className="auth portfolio-text">
-            <form id="create" onSubmit={onSubmit}>
+        <section className="auth portfolio-text">
+            <form method="POST" onSubmit={onSubmit}>
                 <div className="container">
+                    <div className="forms">
+                        <h3 className="rock-salt title">Upload Photo</h3>
+                        <div className="label-input-container">
+                            <label htmlFor="category">Category:</label>
+                            <input
+                                type="text"
+                                name="category"
+                                value={values.category}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <h1>Upload Photo</h1>
+                        <div className="label-input-container">
+                            <label htmlFor="img">Image:</label>
+                            <input
+                                type="text"
+                                name="img"
+                                value={values.img}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <label htmlFor="category">Category:</label>
-                    <input type="text" id="category" name="category" placeholder="Enter game category..." value={values.category} onChange={changeHandler} />
+                        <div className="label-input-container">
+                            <label htmlFor="levels">Camera:</label>
+                            <input
+                                type="text"
+                                name="camera"
+                                value={values.camera}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <label htmlFor="img">Image:</label>
-                    <input type="text" id="img" name="img" placeholder="Upload a photo..." value={values.img} onChange={changeHandler} />
+                        <div className="label-input-container">
+                            <label htmlFor="ISO">ISO:</label>
+                            <input
+                                type="number"
+                                name="ISO"
+                                value={values.ISO}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <label htmlFor="levels">Camera:</label>
-                    <input type="text" id="camera" name="camera" placeholder="1" value={values.camera} onChange={changeHandler} />
-
-                    <label htmlFor="ISO">ISO:</label>
-                    <input type="text" id="ISO" name="ISO" placeholder="1" value={values.ISO} onChange={changeHandler} />
-
-                    <input className="btn submit" type="submit" value="Upload Photo" />
+                        <div className="btn-container">
+                            <button className="button">Upload Photo</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </section>

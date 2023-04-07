@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { useAuthContext } from "../contexts/AuthContext";
+
 import { useService } from "../hooks/useService";
 import { photosServiceFactory } from "../services/dataService";
+
 import { PortfolioItem } from "./PortfolioItem";
 
 export const OwnerPhotos = () => {
@@ -28,6 +31,6 @@ export const OwnerPhotos = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 

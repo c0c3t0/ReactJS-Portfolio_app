@@ -13,45 +13,50 @@ export const Register = () => {
     }, onRegisterSubmit);
 
     return (
-        <section id="register-page" className="content auth portfolio-text">
-            <form id="register" method="post" onSubmit={onSubmit}>
+        <section className="content auth portfolio-text">
+            <form method="post" onSubmit={onSubmit}>
                 <div className="container">
-                    <div className="brand-logo"></div>
-                    <h1>Register</h1>
+                    <div className="forms">
+                        <h3 className="rock-salt title">Register</h3>
 
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="maria@email.com"
-                        value={values.email}
-                        onChange={changeHandler}
-                    />
+                        <div className="label-input-container">
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={values.email}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <label htmlFor="pass">Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="register-password"
-                        value={values.password}
-                        onChange={changeHandler}
-                    />
+                        <div className="label-input-container">
+                            <label htmlFor="login-pass">Password:</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={values.password}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <label htmlFor="con-pass">Confirm Password:</label>
-                    <input
-                        type="password"
-                        name="rePass"
-                        id="confirm-password"
-                        value={values.rePass}
-                        onChange={changeHandler}
-                    />
+                        <div className="label-input-container">
+                            <label htmlFor="con-pass">Repeat Password:</label>
+                            <input
+                                type="password"
+                                name="rePass"
+                                value={values.rePass}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <input className="btn submit" type="submit" value="Register" />
+                        <div className="btn-container">
+                            <button className="button" type="submit">Register</button>
+                            <p className="field">
+                                <span className="link"><Link to="/login">Already have profile?</Link></span>
+                            </p>
+                        </div>
+                    </div>
 
-                    <p className="field">
-                        <span>If you already have profile click <Link to="/login">here</Link></span>
-                    </p>
                 </div>
             </form>
         </section>

@@ -10,8 +10,8 @@ const requester = async (method, url, data) => {
             };
 
             options.body = JSON.stringify(data);
-        }
-    }
+        };
+    };
 
     const serializedAuth = localStorage.getItem('auth');
     if (serializedAuth) {
@@ -22,8 +22,8 @@ const requester = async (method, url, data) => {
                 ...options.headers,
                 'X-Authorization': auth.accessToken,
             };
-        }
-    }
+        };
+    };
 
     const response = await fetch(url, options);
 

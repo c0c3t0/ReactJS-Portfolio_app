@@ -40,4 +40,4 @@ export const photosServiceFactory = (token) => {
         deletePhoto,
         getUserPhotos
     };
-}
+};

@@ -11,7 +11,7 @@ export const CommentForm = ({
         <article className="create-comment">
             <form className="form" onSubmit={onSubmit}>
                 <textarea className="textarea-comments" rows={3} name="comment" placeholder="Type Your Comment" value={values.comment} onChange={changeHandler}></textarea>
-                <button className="button green">Add</button>
+                <button className="button">Add</button>
             </form>
         </article>
     );

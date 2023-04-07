@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 import { useAuthContext } from "../contexts/AuthContext";
-import { useForm } from "../hooks/useForm";
 
+import { useForm } from "../hooks/useForm";
 
 export const Login = () => {
     const { onLoginSubmit } = useAuthContext();
@@ -12,33 +12,38 @@ export const Login = () => {
         password: ''
     }, onLoginSubmit);
     return (
-        <section id="login-page" className="auth portfolio-text">
-            <form id="login" method="POST" onSubmit={onSubmit}>
+        <section className="auth portfolio-text">
+            <form method="POST" onSubmit={onSubmit}>
                 <div className="container">
-                    <div className="brand-logo"></div>
-                    <h1>Login</h1>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder=""
-                        name="email"
-                        value={values.email}
-                        onChange={changeHandler}
-                    />
+                    <div className="forms">
+                        <h3 className="rock-salt title">Login</h3>
+                        <div className="label-input-container">
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={values.email}
+                                onChange={changeHandler}
+                            />
+                        </div>
 
-                    <label htmlFor="login-pass">Password:</label>
-                    <input
-                        type="password"
-                        id="login-password"
-                        name="password"
-                        value={values.password}
-                        onChange={changeHandler}
-                    />
-                    <input type="submit" className="btn submit" value="Login" />
-                    <p className="field">
-                        <span>If you don't have profile click <Link to="/register">here</Link></span>
-                    </p>
+                        <div className="label-input-container">
+                            <label htmlFor="login-pass">Password:</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={values.password}
+                                onChange={changeHandler}
+                            />
+                        </div>
+
+                        <div className="btn-container">
+                            <button className="button">Login</button>
+                            <p className="field">
+                                <span className="link"><Link to="/register">Don't have profile?</Link></span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </form>
         </section>

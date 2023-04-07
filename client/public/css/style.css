@@ -1,6 +1,7 @@
 /* Fonts */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
 
 /* Basic */
@@ -50,6 +51,14 @@ h2 {
 	min-height: 100%;
 }
 
+.rock-salt { 
+	font-family: 'Rock Salt';
+}
+
+span.link a{
+	color: #0E93F4 !important;
+	text-decoration: dashed;
+}
 
 /* Spacing */
 
@@ -79,31 +88,34 @@ h2 {
 }
 
 .navbar-brand {
+	font-family: Rock Salt;
 	padding-left: 0px;
+	color: #000;
+	font-size: 2rem;
 }
 
-.navbar-brand:link,
+/* .navbar-brand:link,
 .navbar-brand:hover,
 .navbar-brand:visited {
 	text-decoration: none;
 	color: white;
-}
+} */
 
 .container a {
 	display: inline-block;
 	position: relative;
 	text-align: center;
-	color: #000;
 	text-decoration: none;
-	font-size: 20px;
+	font-size: 16px;
 	overflow: hidden;
 	top: 5px;
+	color: #0E93F4 !important;
 }
 
 .container a:after {
 	content: '';
 	position: absolute;
-	background: #000;
+	background: #0E93F4;
 	height: 2px;
 	width: 0%;
 	transform: translateX(-50%);
@@ -119,14 +131,22 @@ h2 {
 }
 
 .overlay-menu ul {
-	list-style: none;
-	margin: 0 auto;
-	display: flex;
-	height: 100%;
+    font-family: Rock Salt;
+    list-style: none;
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 100;
 }
+
 
 .overlay-menu ul li {
 	padding-left: 20px;
+}
+
+.active {
+	color: red !important;
 }
 
 /* Portfolio */
@@ -281,48 +301,97 @@ h2 {
 	margin-right: 20px;
 }
 
-/* Comments */
+/* Feedback */
 .feedback {
 	display: flex;
 	justify-content: space-around;
 	margin: 30px 80px;
 }
 
-.textarea-comments {
-	width: 100%;
-	border: 1px solid;
+.details-comments {
+	width: 60%;
 }
+
+.textarea-comments {
+    width: 100%;
+    border: none;
+    background-color: white;
+    margin: 10px 10px 10px 0px;
+    border-radius: 14px;
+    padding: 6px 12px;
+    overflow: overlay;
+}
+
+
+/* Comments */
+.comment ul {
+	padding-left: 10px;
+}
+
+.comment ul li {
+	background-color: white;
+    margin: 10px 10px 10px 0px;
+    border-radius: 14px;
+    padding: 6px 12px;
+	overflow: overlay;
+}
+
+.comment ul li p:first-child {
+	font-weight: 700;
+}
+
+.comment ul li p:nth-child(2) {
+	font-style: italic;
+}
+
+/* Forms */
+.title {
+	margin-bottom: 20px;
+}
+
+.forms {
+	display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40vh;
+    justify-content: center;
+    gap: 22px;
+}
+
+.forms .label-input-container {
+	display: flex;
+	width: 80%;
+	justify-content: end;
+}
+
+.forms .label-input-container label {
+	font-size: 18px;
+	margin-top: 6px;
+}
+
+.forms .label-input-container input{
+	border-radius: 14px;
+    padding: 4px 14px;
+    margin-left: 10px;
+	font-size: 18px;
+	width: 70%;
+}
+
 
 /* Buttons */
 .button {
-	border-radius: 8px;
-	padding: 4px 16px;
-	border: 2px solid;
+    border-radius: 12px;
+    padding: 4px 16px;
+    border: 1px solid lightgrey;
+    background-color: white;
+}
+
+a.button {
+	padding: 7px 24px;
 }
 
 .button:hover {
-	color: white;
-	border: 2px solid black;
-
-}
-
-.yellow {
-	padding: 6px 22px;
-}
-
-.green:hover {
-	background-color: lightgreen;
-
-}
-
-.yellow:hover {
-	background-color: #FFC107;
-
-}
-
-.red:hover {
-	background-color: orangered;
-
+	border: 1px solid black;
 }
 
 /* Rating */

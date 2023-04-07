@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
+import { Link, NavLink } from "react-router-dom";
 
+import { AuthContext } from "../contexts/AuthContext";
 
 export const Navigation = () => {
     const { isAuthenticated } = useContext(AuthContext);
@@ -11,28 +11,26 @@ export const Navigation = () => {
                 <div className="col-md-10 col-sm-12">
                     <nav className="navbar navbar-default">
                         <Link className="navbar-brand" to="/">
-                            <img src="../../assets/logo.png" height="50" alt="Logo" />
+                            <p>Pro Photos</p>
                         </Link>
                         <nav className="overlay-menu">
-                            <ul>
-                                <li> <Link to="/">Portfolio</Link></li>
-                                {isAuthenticated && (<>
-                                    <li> <Link to="/upload">Upload Photo</Link></li>
-                                    <li> <Link to="/my-photos">My Photos</Link></li>
-                                    <li> <Link to="/logout"> Logout</Link></li></>
+                            <ul className="nav-container">
+                                <li> <NavLink to="/">Portfolio</NavLink></li>
+                                {isAuthenticated && (
+                                    <>
+                                        <li> <NavLink to="/upload" className={({isActive})=>{return (isActive ? 'active' : '')}}>Upload Photo</NavLink></li>
+                                        <li> <NavLink to="/my-photos" className={({isActive})=>{return (isActive ? 'active' : '')}}>My Photos</NavLink></li>
+                                        <li> <NavLink to="/logout" className={({isActive})=>{return (isActive ? 'active' : '')}}> Logout</NavLink></li>
+                                    </>
                                 )}
                                 {!isAuthenticated && (
-                                    <><li> <Link to="/login">Login</Link></li>
-                                        <li> <Link to="/register">Register</Link></li></>
+                                    <>
+                                        <li> <NavLink to="/login">Login</NavLink></li>
+                                        <li> <NavLink to="/register">Register</NavLink></li>
+                                    </>
                                 )}
                             </ul>
                         </nav>
-                        {/* <div className="button_container" id="toggle"> */}
-                        {/* <div className="overlay" id="overlay"> */}
-
-                        {/* </div> */}
-                        {/* </div> */}
-
                     </nav>
                 </div>
             </div>
