@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { photosServiceFactory } from '../services/dataService';
@@ -11,6 +11,7 @@ import { useDataContext } from '../contexts/DataContext';
 
 import { CommentForm } from './CommentForm';
 import { Comments } from './Comments';
+import { Likes } from './Likes';
 
 export const PhotoDetails = () => {
     const { photoId } = useParams();
@@ -19,6 +20,7 @@ export const PhotoDetails = () => {
     const [photo, dispatch] = useReducer(dataReducer, {});
     const photoService = useService(photosServiceFactory);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         Promise.all([
@@ -33,6 +35,10 @@ export const PhotoDetails = () => {
             dispatch({ type: 'PHOTOS_FETCH', payload: photoState });
         });
     }, [photoId]);
+
+
+
+
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.addComment(photoId, values.comment);
@@ -58,6 +64,8 @@ export const PhotoDetails = () => {
         };
     };
 
+
+
     return (
         <>
             <div className="portfolio-details">
@@ -65,18 +73,18 @@ export const PhotoDetails = () => {
                     <img src={`../../${photo.img}`} alt="" className="card-img-top big-img" />
                 </div>
                 {isOwner && (
-                <div className="details-buttons">
-                    <Link to={`/photos/edit/${photo._id}`} className="button">Edit</Link>
-                    <button className="button" onClick={onDeleteClick}>Delete</button>
-                </div>
-            )}
+                    <div className="details-buttons">
+                        <Link to={`/photos/edit/${photo._id}`} className="button">Edit</Link>
+                        <button className="button" onClick={onDeleteClick}>Delete</button>
+                    </div>
+                )}
             </div>
 
             <hr />
             <div className="details">
-                <p><b>Category:</b> {photo.category}</p>
-                <p><b>Camera:</b> {photo.camera}</p>
-                <p><b>ISO:</b> {photo.ISO}</p>
+                <p><b>Category:</b> {photo.category ? photo.category : "-"}</p>
+                <p><b>Camera:</b> {photo.camera ? photo.camera : "-"}</p>
+                <p><b>ISO:</b> {photo.ISO ? photo.ISO : "-"}</p>
             </div>
             <hr />
             <div className="feedback">
@@ -93,27 +101,7 @@ export const PhotoDetails = () => {
                 </div>
 
 
-                <div className="rating">
-                    <div className="rate">
-                        <h5><b>Rating: rate (count rates)</b></h5>
-
-
-                        <input type="radio" id="star5" name="rate" defaultValue="5" />
-                        <label htmlFor="star5" title="text">5 stars</label>
-
-                        <input type="radio" id="star4" name="rate" defaultValue="4" />
-                        <label htmlFor="star4" title="text">4 stars</label>
-
-                        <input type="radio" id="star3" name="rate" defaultValue="3" />
-                        <label htmlFor="star3" title="text">3 stars</label>
-
-                        <input type="radio" id="star2" name="rate" defaultValue="2" />
-                        <label htmlFor="star2" title="text">2 stars</label>
-
-                        <input type="radio" id="star1" name="rate" defaultValue="1" />
-                        <label htmlFor="star1" title="text">1 star</label>
-                    </div>
-                </div>
+                <Likes photo={photo} />
             </div>
         </>
     )
