@@ -1,0 +1,71 @@
+/* Navbar */
+
+.navigation {
+	padding-top: 1rem;
+}
+
+.navigation.container-fluid {
+	position: absolute;
+}
+
+.navbar {
+	width: 100%;
+	z-index: 99;
+	top: 15px;
+	padding: 0;
+}
+
+.navbar-brand {
+	font-family: Rock Salt;
+	padding-left: 0px;
+	color: #000;
+	font-size: 2rem;
+}
+
+.container a {
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	overflow: hidden;
+	top: 5px;
+	color: #0E93F4 !important;
+}
+
+.container a:after {
+	content: '';
+	position: absolute;
+	background: #0E93F4;
+	height: 2px;
+	width: 0%;
+	transform: translateX(-50%);
+	left: 50%;
+	bottom: 0;
+	transition: .35s ease;
+}
+
+.container a:hover:after,
+.container a:focus:after,
+.container a:active:after {
+	width: 100%;
+}
+
+.overlay-menu ul {
+    font-family: Rock Salt;
+    list-style: none;
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+
+.overlay-menu ul li {
+	padding-left: 20px;
+}
+
+.active {
+	color: red !important;
+}

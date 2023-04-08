@@ -3,10 +3,18 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
+@import "base.css";
+@import "portfolio.css";
+@import "details.css";
+@import "buttons.css";
+@import "navbar.css";
+@import "comments.css";
+@import "forms.css";
+@import "feedback.css";
 
 /* Basic */
 
-body {
+/* body {
 	background-color: #ebeae9;
 }
 
@@ -58,21 +66,21 @@ h2 {
 span.link a{
 	color: #0E93F4 !important;
 	text-decoration: dashed;
-}
+} */
 
 /* Spacing */
 
-.no-gutter {
+/* .no-gutter {
 	margin-right: 0;
 	margin-left: 0;
 	padding-right: 0;
 	padding-left: 0;
-}
+} */
 
 
 /* Navbar */
 
-.navigation {
+/* .navigation {
 	padding-top: 1rem;
 }
 
@@ -93,13 +101,6 @@ span.link a{
 	color: #000;
 	font-size: 2rem;
 }
-
-/* .navbar-brand:link,
-.navbar-brand:hover,
-.navbar-brand:visited {
-	text-decoration: none;
-	color: white;
-} */
 
 .container a {
 	display: inline-block;
@@ -147,11 +148,11 @@ span.link a{
 
 .active {
 	color: red !important;
-}
+} */
 
 /* Portfolio */
 
-.portfolio-text {
+/* .portfolio-text {
 	padding-top: 8rem;
 	text-align: center;
 }
@@ -200,16 +201,12 @@ span.link a{
 .card-hover img {
 	transition: filter .5s ease-in-out;
 	-webkit-filter: grayscale(0%);
-	/* Ch 23+, Saf 6.0+, BB 10.0+ */
 	filter: grayscale(0%);
-	/* FF 35+ */
 }
 
 .card-hover:hover img {
 	-webkit-filter: grayscale(100%);
-	/* Ch 23+, Saf 6.0+, BB 10.0+ */
 	filter: grayscale(100%);
-	/* FF 35+ */
 }
 
 .reveal p {
@@ -259,10 +256,10 @@ span.link a{
 		text-align: left;
 		padding-top: 1rem;
 	}
-}
+} */
 
 /* Details */
-
+/* 
 .portfolio-details {
 	padding-top: 6rem;
 }
@@ -299,10 +296,10 @@ span.link a{
 
 .details-buttons>.button {
 	margin-right: 20px;
-}
+} */
 
 /* Feedback */
-.feedback {
+/* .feedback {
 	display: flex;
 	justify-content: space-around;
 	margin: 30px 80px;
@@ -320,11 +317,11 @@ span.link a{
     border-radius: 14px;
     padding: 6px 12px;
     overflow: overlay;
-}
+} */
 
 
 /* Comments */
-.comment ul {
+/* .comment ul {
 	padding-left: 10px;
 }
 
@@ -342,10 +339,10 @@ span.link a{
 
 .comment ul li p:nth-child(2) {
 	font-style: italic;
-}
+} */
 
 /* Forms */
-.title {
+/* .title {
 	margin-bottom: 20px;
 }
 
@@ -375,11 +372,11 @@ span.link a{
     margin-left: 10px;
 	font-size: 18px;
 	width: 70%;
-}
+} */
 
 
 /* Buttons */
-.button {
+/* .button {
     border-radius: 12px;
     padding: 4px 16px;
     border: 1px solid lightgrey;
@@ -396,7 +393,7 @@ a.button {
 
 /* Likes */
 
-.like {
+/* .like {
 	text-align: center;
 	cursor: pointer;
 }
@@ -407,4 +404,4 @@ a.button {
 
 .disliked {
 	color: grey;
-}
+}  */

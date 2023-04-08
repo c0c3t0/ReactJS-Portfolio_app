@@ -36,10 +36,6 @@ export const PhotoDetails = () => {
         });
     }, [photoId]);
 
-
-
-
-
     const onCommentSubmit = async (values) => {
         const response = await commentService.addComment(photoId, values.comment);
 
@@ -64,13 +60,11 @@ export const PhotoDetails = () => {
         };
     };
 
-
-
     return (
         <>
             <div className="portfolio-details">
                 <div className="img-container">
-                    <img src={`../../${photo.img}`} alt="" className="card-img-top big-img" />
+                    <img src={photo.img} alt={photo.img} className="card-img-top big-img" />
                 </div>
                 {isOwner && (
                     <div className="details-buttons">
@@ -101,7 +95,7 @@ export const PhotoDetails = () => {
                 </div>
 
 
-                <Likes photo={photo} />
+                <Likes />
             </div>
         </>
     )

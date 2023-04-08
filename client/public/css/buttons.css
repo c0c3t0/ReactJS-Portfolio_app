@@ -1,0 +1,29 @@
+.button {
+    border-radius: 12px;
+    padding: 4px 16px;
+    border: 1px solid lightgrey;
+    background-color: white;
+}
+
+a.button {
+	padding: 7px 24px;
+}
+
+.button:hover {
+	border: 1px solid black;
+}
+
+/* Likes */
+
+.like {
+	text-align: center;
+	cursor: pointer;
+}
+
+.liked {
+	color: red;
+}
+
+.disliked {
+	color: grey;
+}

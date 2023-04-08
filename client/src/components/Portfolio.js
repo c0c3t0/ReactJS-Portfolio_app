@@ -6,16 +6,22 @@ export const Portfolio = () => {
     const { photos } = useDataContext();
 
     return (
-        <div className="portfolio-text">
-            <div className="container-fluid pt-10">
-                <div className="row justify-content-md-center ">
-                    <div className="col-md-10 col-sm-12">
-                        <div className="card-columns">
-                            {photos.map(photo => <PortfolioItem key={photo._id} {...photo} />)}
+        <>
+            <div className="portfolio-text">
+                <div className="container-fluid pt-10">
+                    <div className="row justify-content-md-center ">
+                        <div className="col-md-10 col-sm-12">
+                            <div className="card-columns">
+                                {photos.map(photo => <PortfolioItem key={photo._id} {...photo} />)}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            {photos.length === 0 &&
+                <h3 className="portfolio-text rock-salt title">No photos</h3>
+            }
+        </>
     );
 };

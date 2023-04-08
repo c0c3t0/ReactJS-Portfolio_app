@@ -1,0 +1,62 @@
+body {
+	background-color: #ebeae9;
+}
+
+html {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.btn {
+	border-radius: 0;
+}
+
+a:link,
+a:hover,
+a:visited {
+	text-decoration: none;
+	color: #000;
+}
+
+a:link .white,
+a:hover .white,
+a:visited .white {
+	text-decoration: none;
+	color: #fff;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 3.5rem;
+}
+
+h2 {
+	line-height: 110%;
+	font-size: 2.2rem;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.min-100 {
+	min-height: 100%;
+}
+
+.rock-salt { 
+	font-family: 'Rock Salt';
+}
+
+span.link a{
+	color: #0E93F4 !important;
+	text-decoration: dashed;
+}
+
+/* Spacing */
+
+.no-gutter {
+	margin-right: 0;
+	margin-left: 0;
+	padding-right: 0;
+	padding-left: 0;
+}

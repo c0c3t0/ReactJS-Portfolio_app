@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import * as likesService from '../services/likesService';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 
 
-export const Likes = ({ photo }) => {
-    const { userId } = useAuthContext();
+export const Likes = () => {
+    const { userId, isAuthenticated } = useAuthContext();
     const { photoId } = useParams();
 
     const [like, setLike] = useState([]);
@@ -15,7 +15,6 @@ export const Likes = ({ photo }) => {
         likesService.getLikesCount(photoId)
             .then((likesResult) => {
                 setLike(likesResult);
-                // setLike((state) => state.filter((x) => x.photoId === photoId));
             });
     }, [photoId]);
 
@@ -40,7 +39,9 @@ export const Likes = ({ photo }) => {
         <div className="likes">
             <div className="like">
                 <h5><b>{like.length} Likes</b></h5>
-                <span className={isLiked ? "liked" : "disliked"} onClick={onLikeClick}><i className="fa-solid fa-heart"></i></span>
+                {isAuthenticated
+                    ? <span className={isLiked ? "liked" : "disliked"} onClick={onLikeClick}><i className="fa-solid fa-heart"></i></span>
+                    : <p className="container"><Link to="/login">Sign in to like this photo</Link></p>}
             </div>
         </div>
     );
