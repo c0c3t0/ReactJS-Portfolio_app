@@ -398,6 +398,7 @@ a.button {
 
 .like {
 	text-align: center;
+	cursor: pointer;
 }
 
 .liked {
